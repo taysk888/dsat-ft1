@@ -23,13 +23,17 @@ def main():
     # db
     return(render_template("main.html"))
 
+@app.route("/spam",methods=["GET","POST"])
+def dbs():
+    return(render_template("spam.html"))
+
 @app.route("/spam_check",methods=["GET","POST"])
 def spam_check():
     
     text = request.form.get("q")
     if text is None or text.strip() == "":
         return "Error: No input text provided", 400
-    X = [text]
+    message = [text]
     
     import joblib
     encoder = joblib.load("cv_encoder.pkl")
@@ -38,7 +42,7 @@ def spam_check():
     model = joblib.load("lr_model.pkl")
     pred = model.predict(X_countV)
 
-    return(render_template("spam.html", pred=pred))
+    return(render_template("spam_check.html", r=pred))
 
 @app.route("/llama",methods=["GET","POST"])
 def llama():

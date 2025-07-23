@@ -25,13 +25,19 @@ def main():
 
 @app.route("/spam_check",methods=["GET","POST"])
 def spam_check():
-    q = request.form.get("q")
-    message = q
+    
+    text = request.form.get("q")
+    if text is None or text.strip() == "":
+        return "Error: No input text provided", 400
+    X = [text]
+    
     import joblib
     encoder = joblib.load("cv_encoder.pkl")
     X_countV = encoder.transform([message])
+
     model = joblib.load("lr_model.pkl")
     pred = model.predict(X_countV)
+
     return(render_template("spam.html", pred=pred))
 
 @app.route("/llama",methods=["GET","POST"])

@@ -24,7 +24,7 @@ def main():
     return(render_template("main.html"))
 
 @app.route("/spam",methods=["GET","POST"])
-def dbs():
+def spam():
     return(render_template("spam.html"))
 
 @app.route("/spam_check",methods=["GET","POST"])

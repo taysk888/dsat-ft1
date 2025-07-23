@@ -137,7 +137,7 @@ def webhook():
 
 @app.route("/user_log",methods=["GET","POST"])
 def user_log():
-    conn = sqlite3.connect('user.db')
+    conn = sqlite3.connect("user.db")
     c = conn.cursor()
     c.execute('''select * from user''')
     r=""
@@ -150,7 +150,7 @@ def user_log():
 
 @app.route("/delete_log",methods=["GET","POST"])
 def delete_log():
-    conn = sqlite3.connect('user.db')
+    conn = sqlite3.connect("user.db")
     cursor = conn.cursor()
     cursor.execute('DELETE FROM user')
     conn.commit()

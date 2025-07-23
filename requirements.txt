@@ -6,4 +6,5 @@ groq
 requests
 sqlite3
 datetime
+sklearn
 

@@ -6,6 +6,9 @@ import os
 import sqlite3
 import datetime
 
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, accuracy_score
+
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 app = Flask(__name__)
@@ -19,6 +22,17 @@ def main():
     q = request.form.get("q")
     # db
     return(render_template("main.html"))
+
+@app.route("/spam_check",methods=["GET","POST"])
+def spam_check():
+    q = request.form.get("q")
+    message = q
+    import joblib
+    encoder = joblib.load("cv_encoder.pkl")
+    X_countV = encoder.transform([message])
+    model = joblib.load("lr_model.pkl")
+    pred = model.predict(X_countV)
+    return(render_template("spam.html", pred=pred))
 
 @app.route("/llama",methods=["GET","POST"])
 def llama():

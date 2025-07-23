@@ -148,6 +148,18 @@ def user_log():
     conn.close()
     return render_template("user_log.html", r=r)
 
+@app.route("/add_log",methods=["GET","POST"])
+def add_log():
+    conn = sqlite3.connect("user.db")
+    c = conn.cursor()
+    q = float(request.form.get("q"))
+    t = datetime.datetime.now()
+    c.execute('INSERT INTO user (name,timestamp) VALUES(?,?)',(q,t))
+    conn.commit()
+    c.close()
+    conn.close()
+    return render_template("add_log.html", message="User log added successfully.")
+
 @app.route("/delete_log",methods=["GET","POST"])
 def delete_log():
     conn = sqlite3.connect("user.db")

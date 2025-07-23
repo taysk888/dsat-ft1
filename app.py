@@ -3,6 +3,8 @@ import joblib
 from groq import Groq
 
 import os
+import sqlite3
+import datetime
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 

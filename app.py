@@ -23,6 +23,7 @@ def main():
     # db
     return(render_template("main.html"))
 
+# spam checking using CountVectorizer
 @app.route("/spam",methods=["GET","POST"])
 def spam():
     return(render_template("spam.html"))
@@ -46,6 +47,7 @@ def spam_check():
 
     return render_template("spam_check.html", r=pred)
 
+# query using Llama
 @app.route("/llama",methods=["GET","POST"])
 def llama():
     return(render_template("llama.html"))
@@ -70,6 +72,7 @@ def llama_reply():
 def deepseek():
     return(render_template("deepseek.html"))
 
+# query using Deepseek
 @app.route("/deepseek_reply",methods=["GET","POST"])
 def deepseek_reply():
     q = request.form.get("q")
@@ -86,6 +89,7 @@ def deepseek_reply():
     )
     return(render_template("deepseek_reply.html",r=completion_ds.choices[0].message.content))
 
+# prediction using regression
 @app.route("/dbs",methods=["GET","POST"])
 def dbs():
     return(render_template("dbs.html"))
@@ -101,6 +105,7 @@ def prediction():
 
 import requests
 
+# telegram conversation using Webhook
 @app.route("/telegram",methods=["GET","POST"])
 def telegram():
     domain_url = 'https://dsat-ft1.onrender.com'
@@ -161,6 +166,7 @@ def webhook():
         })
     return('ok', 200)
 
+# SQL database query, insert and delete
 @app.route("/user_log",methods=["GET","POST"])
 def user_log():
     conn = sqlite3.connect("user.db")

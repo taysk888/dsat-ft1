@@ -31,18 +31,20 @@ def spam():
 def spam_check():
     
     text = request.form.get("q")
+
     if text is None or text.strip() == "":
         return "Error: No input text provided", 400
-    message = [text]
-    
+
+    message = [text.strip()]  # make sure whitespace is removed
+
     import joblib
     encoder = joblib.load("cv_encoder.pkl")
-    X_countV = encoder.transform([message])
+    X_countV = encoder.transform(message)  # ✅ fixed here
 
     model = joblib.load("lr_model.pkl")
     pred = model.predict(X_countV)
 
-    return(render_template("spam_check.html", r=pred))
+    return render_template("spam_check.html", r=pred)
 
 @app.route("/llama",methods=["GET","POST"])
 def llama():

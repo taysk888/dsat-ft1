@@ -152,7 +152,7 @@ def user_log():
 def add_log():
     conn = sqlite3.connect("user.db")
     c = conn.cursor()
-    q = float(request.form.get("q"))
+    q = request.form.get("q")
     t = datetime.datetime.now()
     c.execute('INSERT INTO user (name,timestamp) VALUES(?,?)',(q,t))
     conn.commit()

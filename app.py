@@ -7,8 +7,8 @@ import sqlite3
 import datetime
 
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix, accuracy_score
+#from sklearn.linear_model import LogisticRegression
+#from sklearn.metrics import confusion_matrix, accuracy_score
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 

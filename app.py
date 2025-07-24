@@ -6,6 +6,7 @@ import os
 import sqlite3
 import datetime
 
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 
@@ -202,6 +203,9 @@ def delete_log():
     conn.close()
     return render_template("delete_log.html", message="User log deleted successfully.")
 
+@app.route('/sepia', methods=['GET', 'POST'])
+def sepia():
+    return render_template("sepia_hf.html")
 
 if __name__ == "__main__":
     app.run()

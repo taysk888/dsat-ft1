@@ -5,6 +5,3 @@ scikit-learn
 groq
 requests
 datetime
-sklearn
-scikit-learn
-sqlite3

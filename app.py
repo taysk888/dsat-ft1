@@ -11,6 +11,7 @@ import datetime
 #from sklearn.metrics import confusion_matrix, accuracy_score
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 app = Flask(__name__)
 
